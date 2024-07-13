@@ -9,6 +9,7 @@ const GameBoard = () => {
   );
   const [running, setRunning] = useState(false);
   const [name, setName] = useState("");
+  const [showHelp, setShowHelp] = useState(false);
 
   // Function to calculate next state
   const getNextState = (board: number[][]): number[][] => {
@@ -96,7 +97,7 @@ const GameBoard = () => {
 
   return (
     <div>
-      <div className="grid-cols-30 grid">
+      <div className="grid-cols-30 grid bg-white shadow-md">
         {board.map((row, x) =>
           row.map((cell, y) => (
             <div
@@ -107,38 +108,63 @@ const GameBoard = () => {
           )),
         )}
       </div>
-      <div className="mt-4 space-x-2">
-        <div>
-          <button
-            onClick={() => setRunning(!running)}
-            className="bg-blue-500 p-2 text-white"
-          >
-            {running ? "Stop" : "Start"}
-          </button>
-          <button
-            onClick={generateRandomState}
-            className="bg-green-500 p-2 text-white"
-          >
-            Random State
-          </button>
-        </div>
-        <div>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="border border-gray-300 p-2"
-          />
-          <button
-            onClick={() => writeName(name)}
-            className="bg-yellow-500 p-2 text-white"
-          >
-            Write Name
-          </button>
-        </div>
+
+      <div className="mt-4 grid grid-cols-2 gap-2">
+        <button
+          onClick={() => setRunning(!running)}
+          className="rounded bg-blue-500 px-4 py-2 text-white"
+        >
+          {running ? "Stop" : "Start"}
+        </button>
+        <button
+          onClick={generateRandomState}
+          className="rounded bg-green-500 px-4 py-2 text-white"
+        >
+          Random State
+        </button>
+
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="rounded border border-gray-300 bg-gray-200 px-4 py-2"
+        />
+        <button
+          onClick={() => writeName(name)}
+          className="rounded bg-yellow-500 px-4 py-2 text-white"
+        >
+          Write Name
+        </button>
       </div>
+      <button
+        className="absolute right-20 top-10 underline"
+        onClick={() => setShowHelp(!showHelp)}
+      >
+        Help
+      </button>
+
+      {showHelp && (
+        <div className="absolute right-20 top-20 w-80 rounded-lg bg-white p-8 text-left">
+          <h2 className="mb-4 text-xl font-bold">Help</h2>
+          <p className="mb-2 text-sm">
+            You can click the grid to toggle cells manually.
+          </p>
+          <p className="mb-2 text-sm">
+            A living cell will stay alive if 2 or 3 neighbours are living.
+          </p>
+          <p className="mb-2 text-sm">
+            You can click 'Random State' to generate random start state.
+          </p>
+          <p className="mb-2 text-sm">
+            Cells with less than 2 neighbours will die of
+            <span className="font-bold"> underpopulation</span> , cells with 4
+            or more neighbours will die of
+            <span className="font-bold"> overpopulation</span>.
+          </p>
+        </div>
+      )}
     </div>
   );
 };
