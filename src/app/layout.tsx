@@ -4,7 +4,7 @@ import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Conway's Game of Life",
-  description: "Created with ❤️ by https://x.com@adarsh_mamgain",
+  description: "Created with ❤️ by https://x.com/adarsh_mamgain",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   authors: [{ name: "Adarsh Mamgain", url: "https://x.com/adarsh_mamgain" }],
   openGraph: {
