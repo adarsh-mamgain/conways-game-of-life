@@ -17,10 +17,10 @@ const GameBoard = () => {
     for (let i = 0; i < size; i++) {
       for (let j = 0; j < size; j++) {
         const neighbours = countNeighbours(board, i, j);
-        if (board[i][j] === 0 && neighbours === 3) {
-          newBoard[i][j] = 1;
-        } else if (board[i][j] === 1 && (neighbours < 2 || neighbours > 3)) {
-          newBoard[i][j] = 0;
+        if (board[i]?.[j] === 0 && neighbours === 3) {
+          newBoard[i]![j] = 1;
+        } else if (board[i]?.[j] === 1 && (neighbours < 2 || neighbours > 3)) {
+          newBoard[i]![j] = 0;
         }
       }
     }
@@ -35,7 +35,13 @@ const GameBoard = () => {
         if (i === 0 && j === 0) continue;
         const newX = x + i;
         const newY = y + j;
-        if (newX >= 0 && newX < size && newY >= 0 && newY < size) {
+        if (
+          newX >= 0 &&
+          newX < size &&
+          newY >= 0 &&
+          newY < size &&
+          board[newX]?.[newY]
+        ) {
           count += board[newX][newY];
         }
       }
@@ -46,8 +52,10 @@ const GameBoard = () => {
   // Handle click to toggle cell state
   const handleCellClick = (x: number, y: number) => {
     const newBoard = board.map((arr) => [...arr]);
-    newBoard[x][y] = board[x][y] ? 0 : 1;
-    setBoard(newBoard);
+    if (newBoard[x] && typeof newBoard[x]?.[y] !== "undefined") {
+      newBoard[x]![y] = board[x]?.[y] ? 0 : 1;
+      setBoard(newBoard);
+    }
   };
 
   // Start/stop the game
@@ -79,9 +87,14 @@ const GameBoard = () => {
       if (!pattern) continue;
 
       for (let i = 0; i < pattern.length; i++) {
-        for (let j = 0; j < pattern[i].length; j++) {
+        const row = pattern[i];
+        if (!row) continue;
+        for (let j = 0; j < row.length; j++) {
           if (startX + i < size && startY + j < size) {
-            newBoard[startX + i][startY + j] = pattern[i][j];
+            const value = row[j];
+            if (typeof value !== "undefined") {
+              newBoard[startX + i]![startY + j] = value;
+            }
           }
         }
       }
