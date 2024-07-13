@@ -8,6 +8,9 @@ export default {
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
+      gridTemplateColumns: {
+        30: "repeat(30, minmax(0, 1fr))",
+      },
     },
   },
   plugins: [],
