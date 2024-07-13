@@ -8,14 +8,17 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   authors: [{ name: "Adarsh Mamgain", url: "https://x.com/adarsh_mamgain" }],
   openGraph: {
+    siteName: "Conway's Game of Life",
     title: "Conway's Game of Life",
     description: "Created with ❤️ by https://x.com@adarsh_mamgain",
-    images: [{ url: "/assets/meta-image.webp" }],
+    images: [{ url: "/assets/og-image.webp" }],
+    url: process.env.VERCEL_URL,
   },
   twitter: {
+    site: process.env.VERCEL_URL,
     creatorId: "@adarsh_mamgain",
     description: "Created with ❤️ by https://x.com@adarsh_mamgain",
-    images: "/assets/meta-image.webp",
+    images: "/assets/og-image.webp",
   },
 };
 
