@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Conway's Game of Life",
     title: "Conway's Game of Life",
-    description: "Created with ❤️ by https://x.com@adarsh_mamgain",
+    description: "Created with ❤️ by https://x.com/adarsh_mamgain",
     images: [{ url: "/assets/og-image.webp" }],
     url: process.env.VERCEL_URL,
   },
   twitter: {
     site: process.env.VERCEL_URL,
     creatorId: "@adarsh_mamgain",
-    description: "Created with ❤️ by https://x.com@adarsh_mamgain",
+    description: "Created with ❤️ by https://x.com/adarsh_mamgain",
     images: "/assets/og-image.webp",
   },
 };
