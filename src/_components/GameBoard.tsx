@@ -169,7 +169,8 @@ const GameBoard = () => {
             A living cell will stay alive if 2 or 3 neighbours are living.
           </p>
           <p className="mb-2 text-sm">
-            You can click 'Random State' to generate random start state.
+            You can click <span className="font-bold"> Random State</span> to
+            generate random start state.
           </p>
           <p className="mb-2 text-sm">
             Cells with less than 2 neighbours will die of
