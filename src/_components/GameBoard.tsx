@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { characterPatterns } from "@/utils/characterPatterns";
 
 const GameBoard = () => {
@@ -52,8 +52,8 @@ const GameBoard = () => {
   // Handle click to toggle cell state
   const handleCellClick = (x: number, y: number) => {
     const newBoard = board.map((arr) => [...arr]);
-    if (newBoard[x] && typeof newBoard[x]?.[y] !== "undefined") {
-      newBoard[x]![y] = board[x]?.[y] ? 0 : 1;
+    if (typeof newBoard[x]?.[y] !== "undefined") {
+      newBoard[x][y] = board[x]?.[y] ? 0 : 1;
       setBoard(newBoard);
     }
   };
@@ -141,6 +141,7 @@ const GameBoard = () => {
           name="name"
           id="name"
           value={name}
+          placeholder="Enter your name..."
           onChange={(e) => setName(e.target.value)}
           className="rounded border border-gray-300 bg-gray-200 px-4 py-2"
         />
@@ -152,7 +153,7 @@ const GameBoard = () => {
         </button>
       </div>
       <button
-        className="absolute right-20 top-10 underline"
+        className="absolute right-20 top-10 underline hover:text-gray-500 hover:no-underline"
         onClick={() => setShowHelp(!showHelp)}
       >
         Help
